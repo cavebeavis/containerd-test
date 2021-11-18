@@ -1,0 +1,16 @@
+FROM golang:1.17-alpine AS builder
+
+RUN apk update && \
+    apk upgrade && \
+    apk add build-base containerd git
+
+WORKDIR /go/src/app
+
+# Build the plugins for the CNI package to use. This will be built inside
+# folder /go/src/app/plugins/bin/
+ARG plugins=/go/src/app/plugins/bin/
+
+RUN git clone https://github.com/containernetworking/plugins && \
+    cd ./plugins && \
+    sh ./build_linux.sh
+

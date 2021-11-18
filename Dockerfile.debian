@@ -1,0 +1,19 @@
+FROM golang AS builder
+
+# containerd --> ctr cmd
+# iproute2 ----> ip cmd
+# net-tools ---> arp cmd
+RUN apt-get update && \
+    apt-get upgrade && \
+    apt-get install containerd git iproute2 net-tools
+
+WORKDIR /go/src/app
+
+# Build the plugins for the CNI package to use. This will be built inside
+# folder /go/src/app/plugins/bin/
+ARG plugins=/go/src/app/plugins/bin/
+
+RUN git clone https://github.com/containernetworking/plugins && \
+    cd ./plugins && \
+    ./build_linux.sh
+
