@@ -1,5 +1,7 @@
 # So You Want To Containerd??
 
+**FYI**: `/plugins` comes from https://github.com/containernetworking/plugins and you will need to build the plugins and put them in a bin folder for use during interacting with the CNI tooling.
+
 https://www.youtube.com/watch?v=6v_BDHIgOY8
 
 https://www.youtube.com/watch?v=hDIcS66HpSk

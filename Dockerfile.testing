@@ -1,0 +1,12 @@
+FROM mongo:4.0 AS testing
+
+ARG GO_TESTMODE="on"
+
+RUN if [ $GO_TESTMODE = "on" ] ; then \
+        apt-get update && \
+        apt-get upgrade -y; \
+        apt-get install -y apt-utils; \
+        apt-get install -y wget; \
+        # Start mongod in the background.
+        mongod --fork --logpath /var/log/mongod.log; else \
+        echo "testing shut off" ; fi

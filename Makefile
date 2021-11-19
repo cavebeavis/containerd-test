@@ -1,12 +1,30 @@
-.PHONY: say_hello generate clean
+.PHONY: all test go_test build clean
 
-say_hello:
-	@echo "Hello World"
+#COUNT:=0
 
-generate:
-	@echo "Creating empty text files..."
-	touch file-{1..10}.trxt
+all: go_test build clean
+
+test: go_test clean
+
+go_test:
+#	COUNT:=$(COUNT)+1
+#	@echo "$$COUNT" 
+	@echo "Performing go test..."
+#	Do testing which can return other than exit(0)
+
+	@echo "Testing OK"
+	@echo ""
+
+build:
+	@echo "Building docker images..."
+#	docker build stuff
+
+	@echo "Finished building docker images!"
+	@echo ""
 
 clean:
 	@echo "Cleaning up..."
-	rm *.trxt
+#	clean up any temp or other stuff like the ctr/ip networking, namespaces, and links.
+
+	@echo "Done cleaning up!"
+	@echo ""

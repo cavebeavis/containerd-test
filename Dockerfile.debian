@@ -4,8 +4,8 @@ FROM golang AS builder
 # iproute2 ----> ip cmd
 # net-tools ---> arp cmd
 RUN apt-get update && \
-    apt-get upgrade && \
-    apt-get install containerd git iproute2 net-tools
+    apt-get upgrade -y && \
+    apt-get install -y containerd git iproute2 net-tools
 
 WORKDIR /go/src/app
 
